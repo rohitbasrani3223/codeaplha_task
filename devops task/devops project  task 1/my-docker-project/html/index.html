@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Web Server Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box li {
+            padding: 8px 0;
+            color: #555;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .commands {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .commands code {
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐳 Docker Web Server</h1>
+        <p class="subtitle">Successfully Deployed and Running!</p>
+        
+        <div class="status">● Container Status: Running</div>
+        
+        <div class="info-box">
+            <h2>Project Features</h2>
+            <ul>
+                <li>Docker containerization with Nginx</li>
+                <li>Health check monitoring enabled</li>
+                <li>Optimized configuration with gzip compression</li>
+                <li>Security headers implemented</li>
+                <li>Container lifecycle management</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h2>Container Management Commands</h2>
+            <div class="commands">
+                <code># Build the image</code>
+                <code>docker build -t my-webserver .</code>
+                <code></code>
+                <code># Run the container</code>
+                <code>docker run -d -p 8080:80 --name webserver my-webserver</code>
+                <code></code>
+                <code># Check container status</code>
+                <code>docker ps</code>
+                <code></code>
+                <code># View logs</code>
+                <code>docker logs webserver</code>
+                <code></code>
+                <code># Stop container</code>
+                <code>docker stop webserver</code>
+                <code></code>
+                <code># Remove container</code>
+                <code>docker rm webserver</code>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h2>Health Check</h2>
+            <p>Visit <a href="/health" style="color: #667eea;">/health</a> endpoint to check container health status.</p>
+        </div>
+        
+        <div class="footer">
+            <p>DevOps Task 4: Web Server using Docker</p>
+            <p>Container ID: <span id="timestamp"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
+

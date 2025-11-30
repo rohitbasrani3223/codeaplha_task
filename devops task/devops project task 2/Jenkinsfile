@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+    
+    tools {
+        gradle 'Gradle'
+        jdk 'JDK'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'Building Java application with Gradle...'
+                sh './gradlew clean build'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Running unit tests...'
+                sh './gradlew test'
+            }
+            post {
+                always {
+                    junit 'build/test-results/test/*.xml'
+                }
+            }
+        }
+        
+        stage('Package') {
+            steps {
+                echo 'Creating JAR package...'
+                sh './gradlew jar'
+                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deployment stage - ready for deployment...'
+                // Add deployment steps here
+                // Example: Copy JAR to deployment server
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
+

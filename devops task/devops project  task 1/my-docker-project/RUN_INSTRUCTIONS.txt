@@ -1,0 +1,43 @@
+==========================================
+  DOCKER WEB SERVER - RUN INSTRUCTIONS
+==========================================
+
+STEP 1: Install Docker Desktop
+-------------------------------
+1. Download from: https://www.docker.com/products/docker-desktop
+2. Install Docker Desktop
+3. Start Docker Desktop (wait for it to fully start)
+4. Restart computer if needed
+
+STEP 2: Open PowerShell in Project Folder
+------------------------------------------
+Location: C:\Users\PC\Desktop\my-docker-project
+
+STEP 3: Run This Command
+-------------------------
+docker-compose up -d --build
+
+STEP 4: Open Browser
+---------------------
+Go to: http://localhost:8080
+
+STEP 5: Check Status (Optional)
+-------------------------------
+docker ps
+docker-compose logs
+
+STEP 6: Stop Server (When Done)
+--------------------------------
+docker-compose down
+
+==========================================
+  ALTERNATIVE: If docker-compose doesn't work
+==========================================
+
+docker build -t my-webserver .
+docker run -d -p 8080:80 --name webserver my-webserver
+
+Then open: http://localhost:8080
+
+==========================================
+

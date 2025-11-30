@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-webserver
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - web-network
+    volumes:
+      - ./logs:/var/log/nginx
+    labels:
+      - "com.example.description=Web Server Container"
+      - "com.example.version=1.0"
+
+networks:
+  web-network:
+    driver: bridge
+
